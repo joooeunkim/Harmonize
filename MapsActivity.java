@@ -68,9 +68,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int UPDATE_INTERVAL_MS = 1000*30;  // 30초
     private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
 
-    // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용됩니다.
+    // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     boolean needRequest = false;
+    
+    // 앱을 실행하기 위해 필요한 퍼미션을 정의
+    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
     Location mCurrentLocation;
     LatLng currentPosition;
