@@ -23,35 +23,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class NotSelling extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
+    private DatabaseReference databaseReference3;
     private ChildEventListener mChild;
     private String con_id;
     private String cus_id;
     private String category;
-    private String selling;
-    private String hpricee;
-    private String rprice;
+    private String getstore;
     private String text;
-    SQLiteDatabase sqlDB;
-    private Drawable d;
     private String itemid;
     private TextView t1;
     private ImageView c;
     private ImageView v1;
+    private ArrayList<Integer> idlist = new ArrayList<>();
+    private ArrayList<String>latlist = new ArrayList<>();
+    private ArrayList<String>lonlist = new ArrayList<>();
+    private ArrayList<String>namelist = new ArrayList<>();
+    int id=0;
+    double lat,lon;
+    String slat,slon;
+    String name, sid;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not_selling);
-
+        firebaseDatabase = FirebaseDatabase.getInstance();
         Intent intent = getIntent();
         con_id = intent.getExtras().getString("con_id");
         cus_id = intent.getExtras().getString("cus_id");
         text = intent.getExtras().getString("text");
+        getstore = intent.getExtras().getString("store");
+
 
         t1 = (TextView)findViewById(R.id.textfield);
         c = (ImageView)findViewById(R.id.cat);
@@ -59,7 +70,6 @@ public class NotSelling extends AppCompatActivity {
         v1 = new ImageView(getBaseContext());
         v1.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
-        initDatabase();
 
         t1 = (TextView)findViewById(R.id.textfield);
         c = (ImageView)findViewById(R.id.cat);
@@ -72,7 +82,7 @@ public class NotSelling extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if(snapshot.getKey().toString().equals(con_id))
+                    if(snapshot.getKey().equals(con_id))
                     {
                         itemid = snapshot.child("itemid").getValue().toString();
                     }
@@ -85,12 +95,12 @@ public class NotSelling extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getReference("ITEM");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference2 = firebaseDatabase.getReference("ITEM");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if(snapshot.getKey().toString().equals(itemid))
+                    if(snapshot.getKey().equals(itemid))
                         category = snapshot.child("category").getValue(String.class);
                 }
 
@@ -143,6 +153,29 @@ public class NotSelling extends AppCompatActivity {
         });
 
 
+        databaseReference3 = firebaseDatabase.getReference(getstore);
+        databaseReference3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    sid = snapshot.getKey();
+                    id = Integer.parseInt(sid);
+                    idlist.add(id);
+                    lat = snapshot.child("lat").getValue(Double.class);
+                    slat = Double.toString(lat);
+                    latlist.add(slat);
+                    lon = snapshot.child("lon").getValue(Double.class);
+                    slon = Double.toString(lon);
+                    lonlist.add(slon);
+                    name = snapshot.child("name").getValue(String.class);
+                    namelist.add(name);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -155,43 +188,13 @@ public class NotSelling extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void initDatabase() {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("GIFTCON");
 
-
-        mChild = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        databaseReference.addChildEventListener(mChild);
-
-    }
-
-    protected void onDestroy() {
-        super.onDestroy();
-        databaseReference.removeEventListener(mChild);
+    public void movetomap(View view) {
+        Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+        intent.putExtra("idlist",idlist);
+        intent.putExtra("latlist",latlist);
+        intent.putExtra("lonlist",lonlist);
+        intent.putExtra("namelist",namelist);
+        startActivity(intent);
     }
 }

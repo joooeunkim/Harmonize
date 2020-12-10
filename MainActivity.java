@@ -38,10 +38,6 @@ public class MainActivity extends Activity {
     public String id;
     public String name;
     public String password;
-    public String sex;
-    public String phone;
-    public String email;
-    public String money;
     EditText eid,epw;
 
     @Override
@@ -49,6 +45,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initDatabase();
+
         databaseReference = firebaseDatabase.getReference("USER");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -141,5 +138,6 @@ public class MainActivity extends Activity {
         super.onDestroy();
         databaseReference.removeEventListener(mChild);
     }
+
 }
 

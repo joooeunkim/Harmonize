@@ -44,8 +44,6 @@ public class MypageActivity extends AppCompatActivity {
         idText = (TextView)findViewById(R.id.idinfoDB);
         nameText = (TextView)findViewById(R.id.nameinfo);
         nameText2 = (TextView)findViewById(R.id.nameinfoDB);
-        pwText = (TextView)findViewById(R.id.pwinfo);
-        pwText2 = (TextView)findViewById(R.id.pwinfoDB);
         sexText = (TextView)findViewById(R.id.sexinfo);
         sexText2 = (TextView)findViewById(R.id.sexinfoDB);
         phoneText = (TextView)findViewById(R.id.phoneinfo);
@@ -63,7 +61,6 @@ public class MypageActivity extends AppCompatActivity {
                    if(snapshot.getKey().toString().equals(cus_id))
                    {
                        name=snapshot.child("name").getValue(String.class);
-                       pw=snapshot.child("password").getValue(String.class);
                        sex=snapshot.child("sex").getValue(String.class);
                        phone=snapshot.child("phone").getValue(String.class);
                        email=snapshot.child("email").getValue(String.class);
@@ -71,7 +68,6 @@ public class MypageActivity extends AppCompatActivity {
                    }
                 }
                 nameText2.setText(name);
-                pwText2.setText(pw);
                 sexText2.setText(sex);
                 phoneText2.setText(phone);
                 emailText2.setText(email);

@@ -51,6 +51,7 @@ public class WalletActivity extends AppCompatActivity {
     private ArrayList<String> nonsellid = new ArrayList<>();
     private ArrayList<String> selltext = new ArrayList<>();
     private ArrayList<String> nonselltext = new ArrayList<>();
+    private ArrayList<String> sendstorelist = new ArrayList<>();
 
     private ArrayList<String> id = new ArrayList<>();
     private ArrayList<String> store = new ArrayList<>();
@@ -64,7 +65,7 @@ public class WalletActivity extends AppCompatActivity {
     private String sid,sstore,smenu,sexpire_date,scus_id,sitemid,sselling, sitemprimary,scate;
     int srprice =0;
     int shprice = 0;
-    private String cus_Id;
+    private String cus_Id, send_store;
 
 
     private ListView listView1, listview2;
@@ -89,10 +90,10 @@ public class WalletActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent in = new Intent(getApplicationContext(),NotSelling.class);
                 String send_id = nonsellid.get(i);
-
-                in.putExtra("con_id",send_id.toString());
+                in.putExtra("con_id",send_id);
                 in.putExtra("cus_id",cus_Id);
                 in.putExtra("text",nonselltext.get(i));
+                in.putExtra("store",sendstorelist.get(i));
                 startActivity(in);
             }
         });
@@ -203,7 +204,11 @@ public class WalletActivity extends AppCompatActivity {
                     if (selling.get(i).equals("true")) {
                         sellid.add(id.get(i));
                     } else
+                    {
                         nonsellid.add(id.get(i));
+                        sendstorelist.add(store.get(i));
+                    }
+
                 }
 
                 for (int i = 0; i < id.size(); i++) {

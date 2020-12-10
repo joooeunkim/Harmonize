@@ -166,9 +166,9 @@ public class AddsellActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(),"판매등록 되었습니다.",Toast.LENGTH_SHORT).show();
             finish();
-//            Intent intent = new Intent(getApplicationContext(),WalletActivity.class);
-//            intent.putExtra("cus_id",cus_id);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(),WalletActivity.class);
+            intent.putExtra("cus_id",cus_id);
+            startActivity(intent);
         }
 
     }
