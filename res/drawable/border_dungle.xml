@@ -7,7 +7,7 @@
         <shape
             andriod:shape="rectangle" >
             <stroke andriod:width="1dp" andriod:color="#FF948B8B"/>
-            <solid andriod:color="#FFFFFFFF"/>
+            <solid andriod:color="#009688"/>
             <corners andriod:bottomLeftRadius="12dp"
                 andriod:bottomRightRadius="12dp"
                 andriod:topLeftRadius="12dp"

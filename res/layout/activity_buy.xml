@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".buyActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:onClick="buynow"
+
         android:text="구매"/>
 
 </LinearLayout>

@@ -21,6 +21,7 @@
             android:gravity="center"
             android:drawableBottom="@drawable/sell"
 
+
             />
         <TextView
             android:layout_width="0dp"
@@ -54,10 +55,10 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="오늘은 황올이 땡긴다!"
+        android:background="@drawable/textborder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/textborder"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -74,6 +75,7 @@
             android:gravity="center"
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/drinks"
+            android:onClick="drinks"
             android:text="커피/음료" />
 
         <TextView
@@ -85,6 +87,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/fastfood"
             android:gravity="center"
+            android:onClick="fast"
 
             android:text="치킨/피자/햄버거" />
 
@@ -97,6 +100,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/bread"
             android:gravity="center"
+            android:onClick="bread"
 
             android:text="베이커리/도넛" /> </LinearLayout>
 
@@ -114,6 +118,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/icecream"
             android:gravity="center"
+            android:onClick="icecream"
 
             android:text="아이스크림" />
 
@@ -126,7 +131,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/movie"
             android:gravity="center"
-
+            android:onClick="movie"
             android:text="영화" />
 
         <TextView
@@ -138,6 +143,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/outeat"
             android:gravity="center"
+            android:onClick="outeat"
 
             android:text="외식" />
     </LinearLayout>
@@ -155,7 +161,7 @@
             android:gravity="center"
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/coupon"
-
+            android:onClick="coupon"
             android:text="상품권" />
 
         <TextView
@@ -167,7 +173,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/beauty"
             android:gravity="center"
-
+            android:onClick="beauty"
             android:text="뷰티" />
 
         <TextView
@@ -179,7 +185,7 @@
             android:background="@drawable/textborder"
             android:drawableBottom="@drawable/store"
             android:gravity="center"
-
+            android:onClick="store"
             android:text="펀의점" /> </LinearLayout>
 
 
