@@ -145,13 +145,11 @@ public class AddsellActivity extends AppCompatActivity {
     }
 
     public void addselling(View view) {
-
-
         hp = Integer.parseInt(e.getText().toString());
-
         if(rprice < hp)
         {
-            Toast.makeText(getApplicationContext(),"희망가격이 정가보다 높습니다.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),
+                    "희망가격이 정가보다 높습니다.",Toast.LENGTH_SHORT).show();
             e.setText("");
         }
         else
@@ -164,14 +162,16 @@ public class AddsellActivity extends AppCompatActivity {
             //판매중으로 상태변경
             databaseReference.updateChildren(taskMap);
 
-            Toast.makeText(getApplicationContext(),"판매등록 되었습니다.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"판매등록 되었습니다."
+                    ,Toast.LENGTH_SHORT).show();
             finish();
             Intent intent = new Intent(getApplicationContext(),WalletActivity.class);
             intent.putExtra("cus_id",cus_id);
             startActivity(intent);
-        }
 
+        }
     }
+
     private void initDatabase() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("GIFTCON");

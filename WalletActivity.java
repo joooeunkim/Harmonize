@@ -214,7 +214,9 @@ public class WalletActivity extends AppCompatActivity {
                 for (int i = 0; i < id.size(); i++) {
                     if (selling.get(i).equals("true")) {
                         //판매중이면
-                        text = "<<판매중>>\n[" + store.get(i) + "] " + menu.get(i) + "\n유효기간 : " + expire_date.get(i) + " 까지\n" + hprice.get(i) +
+                        text = "<<판매중>>\n[" + store.get(i) + "] "
+                                + menu.get(i) + "\n유효기간 : " +
+                                expire_date.get(i) + " 까지\n" + hprice.get(i) +
                                 "(/" + rprice.get(i) + ")원 ";
 
                         Array2.add(text);
@@ -222,7 +224,9 @@ public class WalletActivity extends AppCompatActivity {
                         selltext.add(text);                 //listview click시 식별해주기위한 text
                                    //listview click시 넘겨줄 con_id
                     } else {
-                        text = "[" + store.get(i) + "] " + menu.get(i) + "\n유효기간 : " + expire_date.get(i) + " 까지\n" +
+                        text = "[" + store.get(i) + "] " +
+                                menu.get(i) + "\n유효기간 : " +
+                                expire_date.get(i) + " 까지\n" +
                                 rprice.get(i) + "원 ";
 
                         Array1.add(text);
@@ -230,9 +234,6 @@ public class WalletActivity extends AppCompatActivity {
                         nonselltext.add(text);              //listview click시 식별해주기위한 text
                                 //listview click시 넘겨줄 con_id
                     }
-
-
-
                 }
                 adapter1.notifyDataSetChanged();
                 listView1.setSelection(adapter1.getCount()-1);

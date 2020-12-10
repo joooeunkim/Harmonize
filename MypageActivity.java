@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 public class MypageActivity extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -133,12 +132,6 @@ public class MypageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void reservation(View view) {
-        Toast.makeText(getApplicationContext(), "버튼을 눌렀습니다.", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
-        intent.putExtra("cus_id", cus_id);
-        startActivity(intent);
-    }
 
     public void sell(View view) {
         Intent intent = new Intent(getApplicationContext(),CategoryActivity.class);
@@ -156,5 +149,12 @@ public class MypageActivity extends AppCompatActivity {
 
     public void mypage(View view) {
 
+    }
+
+    public void goreservation(View view) {
+        Toast.makeText(getApplicationContext(), "버튼을 눌렀습니다.", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
+        intent.putExtra("cus_id", cus_id);
+        startActivity(intent);
     }
 }

@@ -29,7 +29,6 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         Intent r = getIntent();
         cus_Id = r.getExtras().getString("cus_id");
-
         TextView t1 = (TextView) findViewById(R.id.drinks);
         TextView t2 = (TextView) findViewById(R.id.fast);
         TextView t3 = (TextView) findViewById(R.id.bread);
@@ -40,10 +39,7 @@ public class CategoryActivity extends AppCompatActivity {
         TextView t8 = (TextView) findViewById(R.id.beauty);
         TextView t9 = (TextView) findViewById(R.id.store);
 
-
     }
-
-
 
     public void sell(View view) {
     }

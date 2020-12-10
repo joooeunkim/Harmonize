@@ -127,7 +127,9 @@ public class buyActivity extends AppCompatActivity {
         int bal = usermoneylist.get(buyernum);
         int expense = hpricelist.get(giftnum);
         if (bal < expense) {
-            Toast.makeText(getApplicationContext(), "잔액이 부족합니다.\n 충전 후 이용해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),
+                    "잔액이 부족합니다.\n 충전 후 이용해주세요.",
+                    Toast.LENGTH_SHORT).show();
         } else {
             bal = bal - expense;
             sellerm = sellerm + expense;
@@ -146,7 +148,8 @@ public class buyActivity extends AppCompatActivity {
             //판매중 내리기
 
             databaseReference2.updateChildren(taskMap2);
-            Toast.makeText(getApplicationContext(), "구매완료 되었습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "구매완료 되었습니다."
+                    , Toast.LENGTH_SHORT).show();
             finish();
             Intent intent = new Intent(getApplicationContext(),CategoryActivity.class);
             intent.putExtra("cus_id",cus_id);

@@ -97,25 +97,18 @@ public class Join extends Activity {
     }
 
     public void storeinfo(View view) {
-
-
         name = ename.getText().toString();
         password = epw.getText().toString();
         phone = ephone.getText().toString();
         email = eemail.getText().toString();
-
         if(key)
         {
             if(epw.getText().toString().equals(epw2.getText().toString()))
             {
                 if(rm.isSelected())
-                {
                     sex = "male";
-                }
                 else
-                {
-                    sex = "female";
-                }
+                     sex = "female";
                 databaseReference.child(id).child("name").setValue(name);
                 databaseReference.child(id).child("password").setValue(password);
                 databaseReference.child(id).child("sex").setValue(sex);

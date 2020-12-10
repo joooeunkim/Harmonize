@@ -51,14 +51,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback{
-    
+
     private GoogleMap mMap;
     private Marker currentMarker = null;
     private ArrayList<Integer>idlist = new ArrayList<>();
     private ArrayList<String>latlist = new ArrayList<>();
     private ArrayList<String>lonlist = new ArrayList<>();
     private ArrayList<String>namelist = new ArrayList<>();
-        
+
     int id=0;
     double lat,lon;
     String name, sid;
@@ -71,7 +71,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     boolean needRequest = false;
-    
+
     // 앱을 실행하기 위해 필요한 퍼미션을 정의
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
@@ -83,11 +83,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Location location;
 
     private View mLayout;  // Snackbar를 사용하기 위한 view
-   
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            
+
         Intent intent = getIntent();
         idlist = intent.getExtras().getIntegerArrayList("idlist");
         namelist = intent.getExtras().getStringArrayList("namelist");
@@ -133,7 +133,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Manifest.permission.ACCESS_COARSE_LOCATION);
         //이미 퍼미션을 가지고 있다면 위치 업데이트 시작
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED && hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
-            startLocationUpdates();  
+            startLocationUpdates();
         }
         //퍼미션 요청을 허용한 적이 없다면 퍼미션 요청 필요
         else {
@@ -148,16 +148,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         ActivityCompat.requestPermissions( MapsActivity.this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
                     }
                 }).show();
-            //사용자가 퍼미션 거부를 한 적이 없는 경우
+                //사용자가 퍼미션 거부를 한 적이 없는 경우
             } else {
                 //퍼미션 요청 실시. 요청 결과는 onRequestPermissionResult에서 수신
                 ActivityCompat.requestPermissions( this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             }
         }
-            
+
         mMap.setMyLocationEnabled(false);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-            
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -172,7 +172,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         public void onLocationResult(LocationResult locationResult) {
             super.onLocationResult(locationResult);
             Log.d(TAG, "locationCallback ");
-                
+
             List<Location> locationList = locationResult.getLocations();
 
             if (locationList.size() > 0) {
@@ -284,7 +284,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.title(markerTitle);
         markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
-        //markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.myplace3));
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.me));
         currentMarker = mMap.addMarker(markerOptions);
 
         double getlat, getlon;
@@ -297,10 +297,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             markerOptions2.position(storeslatLng);
             markerOptions2.title(markerTitle2);
             markerOptions2.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+            //markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+            markerOptions2.icon(BitmapDescriptorFactory.fromResource(R.drawable.place));
             mMap.addMarker(markerOptions2);
         }
-            
+
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
     }
@@ -327,7 +328,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     //런타임 퍼미션 처리
-       
+
     private boolean checkPermission() {
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
@@ -341,7 +342,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return false;
     }
 
-        
+
     //위의 ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드
     @Override
     public void onRequestPermissionsResult(int permsRequestCode, @NonNull String[] permissions, @NonNull int[] grandResults) {

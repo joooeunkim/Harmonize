@@ -208,7 +208,8 @@ public class conlistActivity extends Activity {
                             {
                                 if(catelist.get(j).equals(category)){
                                     //선택한 category에 해당하는 giftcon
-                                    //giftcon의 itemid 에 해당하는 기프티콘 번호, 매장명, 메뉴, 유효기간, 희망가, 정가 저장
+                                    //giftcon의 itemid 에 해당하는 기프티콘 번호
+                                    //, 매장명, 메뉴, 유효기간, 희망가, 정가 저장
                                     id.add(idlist.get(i));
                                     store.add(storelist.get(j));
                                     menu.add(menulist.get(j));
@@ -220,13 +221,13 @@ public class conlistActivity extends Activity {
                             }
                         }
                     }
-
-
                 }
                 textlist.clear();
                 for(int i=0;i<id.size();i++)
                 {
-                    text = "[" + store.get(i) + "] " + menu.get(i) + "\n유효기간 : " + expire_date.get(i) + " 까지\n" + hprice.get(i) +
+                    text = "[" + store.get(i) + "] " + menu.get(i)
+                            + "\n유효기간 : " + expire_date.get(i) +
+                            " 까지\n" + hprice.get(i) +
                             "(/" + rprice.get(i) + ")원 ";
                     Array1.add(text);
                     adapter1.add(text);
