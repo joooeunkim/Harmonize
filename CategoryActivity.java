@@ -1,5 +1,7 @@
 package com.project.team8;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,18 +10,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class CategoryActivity extends AppCompatActivity {
 
-    private String cus_id;
+
+    private String cus_Id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-
         Intent r = getIntent();
-        cus_id = r.getExtras().getString("cus_id");
+        cus_Id = r.getExtras().getString("cus_id");
 
         TextView t1 = (TextView) findViewById(R.id.drinks);
         TextView t2 = (TextView) findViewById(R.id.fast);
@@ -32,57 +41,6 @@ public class CategoryActivity extends AppCompatActivity {
         TextView t9 = (TextView) findViewById(R.id.store);
 
 
-        View.OnClickListener listener = new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
-                switch (v.getId())
-                {
-                    case R.id.drinks:
-                        intent.putExtra("category","drinks");
-                        break;
-                    case R.id.fast:
-                        intent.putExtra("category","fastfood");
-                        break;
-                    case R.id.bread:
-                        intent.putExtra("category","bread");
-                        break;
-                    case R.id.icecream:
-                        intent.putExtra("category","icecream");
-                        break;
-                    case R.id.movie:
-                        intent.putExtra("category","movie");
-                        break;
-                    case R.id.out:
-                        intent.putExtra("category","outeat");
-                        break;
-                    case R.id.coupon:
-                        intent.putExtra("category","coupon");
-                        break;
-                    case R.id.beauty:
-                        intent.putExtra("category","beauty");
-                        break;
-                    case R.id.store:
-                        intent.putExtra("category","store");
-                        break;
-
-
-                }
-                intent.putExtra("cus_id",cus_id);
-                startActivity(intent);
-            }
-
-        };
-        t1.setOnClickListener(listener);
-        t2.setOnClickListener(listener);
-        t3.setOnClickListener(listener);
-        t4.setOnClickListener(listener);
-        t5.setOnClickListener(listener);
-        t6.setOnClickListener(listener);
-        t7.setOnClickListener(listener);
-        t8.setOnClickListener(listener);
-        t9.setOnClickListener(listener);
-
     }
 
 
@@ -92,10 +50,71 @@ public class CategoryActivity extends AppCompatActivity {
 
     public void home(View view) {
         Intent i = new Intent(getApplicationContext(), WalletActivity.class);
-        i.putExtra("cus_id",cus_id);
+        i.putExtra("cus_id",cus_Id);
         startActivity(i);
+        finish();
     }
 
     public void mypage(View view) {
+        Intent i = new Intent(getApplicationContext(),MypageActivity.class);
+        i.putExtra("cus_id",cus_Id);
+        startActivity(i);
+        finish();
     }
+
+
+    public void drinks(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","drinks");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void fast(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","fastfood");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void bread(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","bread");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void icecream(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","icecream");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void movie(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","movie");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void outeat(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","outeat");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }public void coupon(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","coupon");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void beauty(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","beauty");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+    public void store(View view) {
+        Intent intent = new Intent(getApplicationContext(),conlistActivity.class);
+        intent.putExtra("category","store");
+        intent.putExtra("cus_id",cus_Id);
+        startActivity(intent);
+    }
+
 }
